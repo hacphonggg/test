@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Kiểm Tra Science Lớp 8</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f3f4f6;
+            --white: #ffffff;
+            --text: #1f2937;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            min-height: 80vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        /* MENU GRID */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+
+        .menu-item p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* SECTIONS */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .question-card {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .q-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* MULTIPLE CHOICE */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: #eef2ff;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        /* MATCHING */
+        .matching-container {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .match-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 10px;
+            align-items: center;
+            background: var(--white);
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .match-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FILL IN BLANK */
+        .fill-blank-line {
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+        
+        .blank-input {
+            border: none;
+            border-bottom: 2px solid #9ca3af;
+            background: transparent;
+            width: 120px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1rem;
+            margin: 0 5px;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-bottom-color: var(--primary);
+        }
+
+        /* ESSAY */
+        .essay-box {
+            background: #ffffff;
+            border-left: 4px solid var(--warning);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* BUTTONS */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: #9ca3af;
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: #6b7280;
+        }
+
+        /* FEEDBACK */
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>BÀI KIỂM TRA KHOA HỌC LỚP 8</h1>
+        <div class="subtitle">Chủ đề: Sự hô hấp & Tính chất của vật chất</div>
+        <div style="margin-top: 10px; font-size: 0.9rem; color: #ef4444;">* Học sinh chọn từng phần bên dưới để làm bài *</div>
+    </header>
+
+    <!-- MENU SCREEN -->
+    <div id="menu" class="menu-grid">
+        <div class="menu-item" onclick="showSection('partA')">
+            <h3>PHẦN A: TRẮC NGHIỆM</h3>
+            <p>20 câu hỏi - Chọn 1 đáp án đúng</p>
+        </div>
+        <div class="menu-item" onclick="showSection('partB')">
+            <h3>PHẦN B: ĐÚNG / SAI</h3>
+            <p>10 câu hỏi - Xác định mệnh đề</p>
+        </div>
+        <div class="menu-item" onclick="showSection('partC')">
+            <h3>PHẦN C: NỐI CỘT</h3>
+            <p>Ghép cặp khái niệm & định nghĩa</p>
+        </div>
+        <div class="menu-item" onclick="showSection('partD')">
+            <h3>PHẦN D: ĐIỀN KHUYẾT</h3>
+            <p>Điền từ còn thiếu vào chỗ trống</p>
+        </div>
+        <div class="menu-item" onclick="showSection('partE')">
+            <h3>PHẦN E: TỰ LUẬN</h3>
+            <p>Câu hỏi vận dụng (Làm vào vở)</p>
+        </div>
+    </div>
+
+    <!-- PART A -->
+    <div id="partA" class="section">
+        <div class="section-header">
+            <h2>Phần A: Trắc Nghiệm Khách Quan</h2>
+            <button class="btn btn-secondary" onclick="goHome()">Quay lại Menu</button>
+        </div>
+        <div id="scoreA" class="score-display"></div>
+        <div id="questionsA"></div>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="submitPartA()">Nộp bài & Xem điểm</button>
+        </div>
+    </div>
+
+    <!-- PART B -->
+    <div id="partB" class="section">
+        <div class="section-header">
+            <h2>Phần B: Đúng / Sai</h2>
+            <button class="btn btn-secondary" onclick="goHome()">Quay lại Menu</button>
+        </div>
+        <div id="scoreB" class="score-display"></div>
+        <div id="questionsB"></div>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="submitPartB()">Nộp bài & Xem điểm</button>
+        </div>
+    </div>
+
+    <!-- PART C -->
+    <div id="partC" class="section">
+        <div class="section-header">
+            <h2>Phần C: Nối Cột</h2>
+            <button class="btn btn-secondary" onclick="goHome()">Quay lại Menu</button>
+        </div>
+        <div id="scoreC" class="score-display"></div>
+        
+        <div class="question-card">
+            <div class="q-title">Bảng 1: Hệ hô hấp và Máu</div>
+            <div id="matching1" class="matching-container"></div>
+        </div>
+
+        <div class="question-card">
+            <div class="q-title">Bảng 2: Sự hòa tan</div>
+            <div id="matching2" class="matching-container"></div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="submitPartC()">Nộp bài & Xem điểm</button>
+        </div>
+    </div>
+
+    <!-- PART D -->
+    <div id="partD" class="section">
+        <div class="section-header">
+            <h2>Phần D: Điền Khuyết</h2>
+            <button class="btn btn-secondary" onclick="goHome()">Quay lại Menu</button>
+        </div>
+        <p style="text-align:center; margin-bottom:20px; background:#e0e7ff; padding:10px; border-radius:6px;">
+            Từ gợi ý: <strong>glucose, khuếch tán, năng lượng, bảo toàn, bão hòa</strong>
+        </p>
+        <div id="scoreD" class="score-display"></div>
+        <div id="questionsD"></div>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="submitPartD()">Nộp bài & Xem điểm</button>
+        </div>
+    </div>
+
+    <!-- PART E -->
+    <div id="partE" class="section">
+        <div class="section-header">
+            <h2>Phần E: Tự Luận & Vận Dụng</h2>
+            <button class="btn btn-secondary" onclick="goHome()">Quay lại Menu</button>
+        </div>
+        <div style="text-align:center; color: #dc2626; font-style: italic; margin-bottom: 20px;">
+            Lưu ý: Học sinh đọc đề bài và làm vào vở bài tập.
+        </div>
+
+        <div class="essay-box">
+            <div class="q-title">Câu 1 (0.5đ):</div>
+            <p>Giải thích tại sao khi tập thể dục mạnh, nhịp thở của chúng ta lại tăng lên?</p>
+            <p><em>(Gợi ý: Liên hệ đến nhu cầu năng lượng và hô hấp tế bào)</em></p>
+        </div>
+
+        <div class="essay-box">
+            <div class="q-title">Câu 2 (0.5đ):</div>
+            <p>Bạn Nam muốn tách các màu có trong một loại mực bút dạ màu đen. Nam chấm mực lên giấy lọc và nhúng mép giấy vào nước. Tuy nhiên, vệt mực không hề di chuyển và không tách ra được màu nào.</p>
+            <p>a. Tại sao thí nghiệm của Nam thất bại?</p>
+            <p>b. Em hãy đề xuất cách khắc phục cho Nam.</p>
+        </div>
+
+        <div class="essay-box">
+            <div class="q-title">Câu 3 (1.0đ):</div>
+            <p>Dựa vào bảng độ tan dưới đây để trả lời câu hỏi:</p>
+            <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 400px; margin: 10px 0;">
+                <tr style="background: #f3f4f6;"><th>Nhiệt độ (°C)</th><th>Độ tan của đường (g/100g nước)</th></tr>
+                <tr><td style="text-align:center;">20</td><td style="text-align:center;">204</td></tr>
+                <tr><td style="text-align:center;">60</td><td style="text-align:center;">287</td></tr>
+            </table>
+            <p>a. Ở 20°C, nếu hòa tan 250g đường vào 100g nước thì dung dịch thu được có bão hòa không? Tại sao?</p>
+            <p>b. Nếu đun nóng cốc nước đó lên 60°C, lượng đường chưa tan hết (nếu có) có tan được không? Tính lượng đường tối đa có thể hòa tan thêm ở 60°C so với 20°C trong 100g nước.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // DATA SOURCE
+    const dataA = [
+        { q: "Cấu trúc nào giữ cho khí quản luôn mở?", opts: ["Các lớp cơ dày", "Các vòng sụn", "Xương lồng ngực", "Dây thanh âm"], ans: 1 },
+        { q: "Quá trình trao đổi khí diễn ra tại đâu?", opts: ["Khí quản", "Phế quản", "Tiểu phế quản", "Túi khí (Phế nang)"], ans: 3 },
+        { q: "Đặc điểm nào KHÔNG phải của túi khí?", opts: ["Thành rất mỏng", "Nhiều mao mạch", "Diện tích lớn", "Có vỏ cứng bảo vệ"], ans: 3 },
+        { q: "Khi hít vào, trạng thái cơ hoành như thế nào?", opts: ["Co (hạ xuống)", "Giãn (nâng lên)", "Không đổi", "Rung động"], ans: 0 },
+        { q: "Hô hấp hiếu khí tạo ra sản phẩm gì?", opts: ["Glucose + Oxy", "CO2 + Nước + Năng lượng", "Oxy + Nước", "Tinh bột"], ans: 1 },
+        { q: "Tế bào nào vận chuyển oxygen?", opts: ["Bạch cầu", "Hồng cầu", "Tiểu cầu", "Huyết tương"], ans: 1 },
+        { q: "Hợp chất màu đỏ tươi trong máu là gì?", opts: ["Carboxyhaemoglobin", "Oxyhaemoglobin", "Plasma", "Antibodies"], ans: 1 },
+        { q: "Bạch cầu có chức năng gì?", opts: ["Vận chuyển khí", "Đông máu", "Bảo vệ cơ thể", "Tạo nhiệt"], ans: 2 },
+        { q: "Dung dịch là gì?", opts: ["Hỗn hợp mờ đục", "Hỗn hợp đồng nhất, trong suốt", "Chất rắn không tan", "Chất lỏng tách lớp"], ans: 1 },
+        { q: "Chất lỏng hòa tan chất khác gọi là gì?", opts: ["Chất tan", "Dung dịch", "Dung môi", "Kết tủa"], ans: 2 },
+        { q: "Độ tan phụ thuộc chủ yếu vào yếu tố nào?", opts: ["Áp suất", "Nhiệt độ", "Thể tích bình chứa", "Màu sắc"], ans: 1 },
+        { q: "Dung dịch bão hòa là dung dịch:", opts: ["Rất loãng", "Không thể hòa tan thêm chất tan", "Có màu đậm", "Chứa ít chất tan"], ans: 1 },
+        { q: "Sắc ký giấy dùng để làm gì?", opts: ["Đo nhiệt độ", "Tách chất màu", "Lọc nước", "Đo khối lượng"], ans: 1 },
+        { q: "Khối lượng được bảo toàn khi hòa tan nghĩa là:", opts: ["M dd = M chất tan + M dung môi", "M dd < M chất tan", "M dd > M dung môi", "Khối lượng giảm đi"], ans: 0 },
+        { q: "Tại sao hồng cầu không có nhân?", opts: ["Để sống lâu", "Để chứa nhiều Haemoglobin", "Để tự vệ", "Để sinh sản nhanh"], ans: 1 },
+        { q: "Chất khí nào làm đục nước vôi trong?", opts: ["Oxy", "Nitơ", "Carbon dioxide", "Hydro"], ans: 2 },
+        { q: "Sự khuếch tán là sự di chuyển từ:", opts: ["Nơi thấp đến cao", "Nơi cao đến thấp", "Ngẫu nhiên", "Không di chuyển"], ans: 1 },
+        { q: "Thành phần chính của huyết tương là gì?", opts: ["Protein", "Nước", "Muối khoáng", "Đường"], ans: 1 },
+        { q: "Khi nhiệt độ tăng, độ tan của chất rắn thường:", opts: ["Tăng", "Giảm", "Không đổi", "Biến mất"], ans: 0 },
+        { q: "Đường trong nước đường đóng vai trò là:", opts: ["Dung môi", "Dung dịch", "Chất tan", "Chất xúc tác"], ans: 2 }
+    ];
+
+    const dataB = [
+        { q: "Phổi là cơ quan duy nhất trong hệ hô hấp.", ans: "Sai" },
+        { q: "Khi thở ra, thể tích lồng ngực giảm xuống.", ans: "Đúng" },
+        { q: "Hô hấp hiếu khí diễn ra ở ti thể.", ans: "Đúng" },
+        { q: "Máu động mạch luôn giàu oxy.", ans: "Sai" },
+        { q: "Nước là dung môi duy nhất.", ans: "Sai" },
+        { q: "Dung dịch đậm đặc chứa nhiều chất tan hơn dung dịch loãng.", ans: "Đúng" },
+        { q: "Sữa là một dung dịch.", ans: "Sai" },
+        { q: "Chất không tan không thể hòa tan trong dung môi cụ thể.", ans: "Đúng" },
+        { q: "Kháng thể do hồng cầu tiết ra.", ans: "Sai" },
+        { q: "Độ tan thay đổi theo nhiệt độ.", ans: "Đúng" }
+    ];
+
+    const dataC1 = [
+        { left: "Phế nang", right: "Các túi khí nhỏ trao đổi khí", id: "1" },
+        { left: "Khí quản", right: "Ống dẫn khí có vòng sụn", id: "2" },
+        { left: "Cơ hoành", right: "Cơ vòm giúp hít thở", id: "3" },
+        { left: "Bạch cầu", right: "Tế bào bảo vệ cơ thể", id: "4" }
+    ];
+
+    const dataC2 = [
+        { left: "Chất tan", right: "Chất rắn bị hòa tan", id: "1" },
+        { left: "Dung môi", right: "Chất lỏng để hòa tan", id: "2" },
+        { left: "Dung dịch", right: "Hỗn hợp đồng nhất", id: "3" },
+        { left: "Sắc ký đồ", right: "Kết quả tách màu trên giấy", id: "4" }
+    ];
+
+    const dataD = [
+        { pre: "1. Hô hấp tế bào dùng khí oxy để phân giải", ans: "glucose", post: "thành năng lượng." },
+        { pre: "2. Khí oxy di chuyển từ phế nang vào máu nhờ quá trình", ans: "khuếch tán", post: "." },
+        { pre: "3. Trong phản ứng hòa tan, khối lượng luôn được", ans: "bảo toàn", post: "." },
+        { pre: "4. Dung dịch không thể hòa tan thêm chất tan gọi là", ans: "bão hòa", post: "." }
+    ];
+
+    // INIT
+    window.onload = function() {
+        renderPartA();
+        renderPartB();
+        renderPartC();
+        renderPartD();
+    };
+
+    function goHome() {
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.getElementById('menu').style.display = 'grid';
+    }
+
+    function showSection(id) {
+        document.getElementById('menu').style.display = 'none';
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // RENDER A
+    function renderPartA() {
+        const container = document.getElementById('questionsA');
+        let html = '';
+        dataA.forEach((item, idx) => {
+            let optsHtml = '';
+            item.opts.forEach((opt, i) => {
+                optsHtml += `
+                    <label class="option-label">
+                        <input type="radio" name="qA${idx}" value="${i}">
+                        ${String.fromCharCode(65+i)}. ${opt}
+                    </label>
+                `;
+            });
+            html += `
+                <div class="question-card">
+                    <div class="q-title">Câu ${idx+1}: ${item.q}</div>
+                    <div class="options">${optsHtml}</div>
+                    <div id="fbA${idx}" class="feedback"></div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function submitPartA() {
+        let score = 0;
+        dataA.forEach((item, idx) => {
+            const selected = document.querySelector(`input[name="qA${idx}"]:checked`);
+            const fb = document.getElementById(`fbA${idx}`);
+            fb.className = 'feedback';
+            if(selected) {
+                if(parseInt(selected.value) === item.ans) {
+                    score++;
+                    fb.classList.add('correct');
+                    fb.innerHTML = "Chính xác!";
+                } else {
+                    fb.classList.add('wrong');
+                    fb.innerHTML = `Sai rồi. Đáp án đúng: ${String.fromCharCode(65+item.ans)}. ${item.opts[item.ans]}`;
+                }
+            } else {
+                fb.classList.add('wrong');
+                fb.innerHTML = "Chưa chọn đáp án.";
+            }
+        });
+        document.getElementById('scoreA').style.display = 'block';
+        document.getElementById('scoreA').innerText = `Kết quả: ${score} / ${dataA.length}`;
+    }
+
+    // RENDER B
+    function renderPartB() {
+        const container = document.getElementById('questionsB');
+        let html = '';
+        dataB.forEach((item, idx) => {
+            html += `
+                <div class="question-card">
+                    <div class="q-title">Câu ${idx+1}: ${item.q}</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="qB${idx}" value="Đúng"> Đúng</label>
+                        <label class="option-label"><input type="radio" name="qB${idx}" value="Sai"> Sai</label>
+                    </div>
+                    <div id="fbB${idx}" class="feedback"></div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function submitPartB() {
+        let score = 0;
+        dataB.forEach((item, idx) => {
+            const selected = document.querySelector(`input[name="qB${idx}"]:checked`);
+            const fb = document.getElementById(`fbB${idx}`);
+            fb.className = 'feedback';
+            if(selected) {
+                if(selected.value === item.ans) {
+                    score++;
+                    fb.classList.add('correct');
+                    fb.innerHTML = "Chính xác!";
+                } else {
+                    fb.classList.add('wrong');
+                    fb.innerHTML = `Sai. Đáp án đúng là: ${item.ans}`;
+                }
+            } else {
+                fb.classList.add('wrong');
+                fb.innerHTML = "Chưa chọn đáp án.";
+            }
+        });
+        document.getElementById('scoreB').style.display = 'block';
+        document.getElementById('scoreB').innerText = `Kết quả: ${score} / ${dataB.length}`;
+    }
+
+    // RENDER C
+    function renderPartC() {
+        renderMatchTable(dataC1, 'matching1', 'm1');
+        renderMatchTable(dataC2, 'matching2', 'm2');
+    }
+
+    function renderMatchTable(data, containerId, prefix) {
+        const container = document.getElementById(containerId);
+        // Shuffle right side options for display logic
+        let rightOpts = [...data].sort(() => Math.random() - 0.5); 
+        // Create Select Options
+        let optsHtml = '<option value="">--Chọn--</option>';
+        rightOpts.forEach(item => {
+            optsHtml += `<option value="${item.id}">${item.right}</option>`;
+        });
+
+        let html = '';
+        data.forEach((item, idx) => {
+            html += `
+                <div class="match-row">
+                    <div style="font-weight:600">${item.left}</div>
+                    <div style="text-align:center">👉</div>
+                    <div>
+                        <select id="${prefix}_${idx}" style="width:100%; padding:8px; border-radius:4px; border:1px solid #ccc">
+                            ${optsHtml}
+                        </select>
+                    </div>
+                </div>
+                <div id="fb_${prefix}_${idx}" class="feedback" style="margin-bottom:10px"></div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function submitPartC() {
+        let score = 0;
+        let checkMatch = (data, prefix) => {
+            data.forEach((item, idx) => {
+                const val = document.getElementById(`${prefix}_${idx}`).value;
+                const fb = document.getElementById(`fb_${prefix}_${idx}`);
+                fb.className = 'feedback';
+                if(val === item.id) {
+                    score++;
+                    fb.classList.add('correct');
+                    fb.innerHTML = "Ghép đúng!";
+                } else {
+                    fb.classList.add('wrong');
+                    fb.innerHTML = `Sai. Ghép đúng là: ${item.right}`;
+                }
+            });
+        };
+        checkMatch(dataC1, 'm1');
+        checkMatch(dataC2, 'm2');
+        
+        const total = dataC1.length + dataC2.length;
+        document.getElementById('scoreC').style.display = 'block';
+        document.getElementById('scoreC').innerText = `Kết quả: ${score} / ${total}`;
+    }
+
+    // RENDER D
+    function renderPartD() {
+        const container = document.getElementById('questionsD');
+        let html = '';
+        dataD.forEach((item, idx) => {
+            html += `
+                <div class="question-card fill-blank-line">
+                    ${item.pre} 
+                    <input type="text" class="blank-input" id="qD${idx}" placeholder="..."> 
+                    ${item.post}
+                    <div id="fbD${idx}" class="feedback"></div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function submitPartD() {
+        let score = 0;
+        dataD.forEach((item, idx) => {
+            const val = document.getElementById(`qD${idx}`).value.trim().toLowerCase();
+            const fb = document.getElementById(`fbD${idx}`);
+            fb.className = 'feedback';
+            if(val === item.ans) {
+                score++;
+                fb.classList.add('correct');
+                fb.innerHTML = "Chính xác!";
+            } else {
+                fb.classList.add('wrong');
+                fb.innerHTML = `Sai. Đáp án: ${item.ans}`;
+            }
+        });
+        document.getElementById('scoreD').style.display = 'block';
+        document.getElementById('scoreD').innerText = `Kết quả: ${score} / ${dataD.length}`;
+    }
+
+</script>
+
+</body>
+</html>
